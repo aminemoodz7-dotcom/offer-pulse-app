@@ -14,7 +14,134 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      alerts: {
+        Row: {
+          brand: string | null
+          category: string
+          created_at: string
+          id: string
+          is_active: boolean
+          location: string | null
+          max_price: number | null
+          model: string | null
+          name: string
+          notification_type: string
+          platforms: string[]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          brand?: string | null
+          category: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          location?: string | null
+          max_price?: number | null
+          model?: string | null
+          name: string
+          notification_type?: string
+          platforms?: string[]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          brand?: string | null
+          category?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          location?: string | null
+          max_price?: number | null
+          model?: string | null
+          name?: string
+          notification_type?: string
+          platforms?: string[]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          discord_webhook_url: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          telegram_chat_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          discord_webhook_url?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          telegram_chat_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          discord_webhook_url?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          telegram_chat_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      scraped_listings: {
+        Row: {
+          alert_id: string | null
+          external_id: string
+          id: string
+          image_url: string | null
+          listing_url: string
+          location: string | null
+          platform: string
+          price: number | null
+          sent_at: string
+          title: string
+        }
+        Insert: {
+          alert_id?: string | null
+          external_id: string
+          id?: string
+          image_url?: string | null
+          listing_url: string
+          location?: string | null
+          platform: string
+          price?: number | null
+          sent_at?: string
+          title: string
+        }
+        Update: {
+          alert_id?: string | null
+          external_id?: string
+          id?: string
+          image_url?: string | null
+          listing_url?: string
+          location?: string | null
+          platform?: string
+          price?: number | null
+          sent_at?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scraped_listings_alert_id_fkey"
+            columns: ["alert_id"]
+            isOneToOne: false
+            referencedRelation: "alerts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
